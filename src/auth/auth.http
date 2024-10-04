@@ -1,0 +1,21 @@
+@host=http://localhost:3002
+
+### Register
+# @name register
+POST {{host}}/v1/auth/register
+Content-Type: application/json
+
+{
+  "email": "username@gmail.com",
+  "username": "admin",
+  "password": "admin123_A"
+}
+
+### Login
+POST {{host}}/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password":"admin123_A"
+}

@@ -1,0 +1,10 @@
+# @host=http://localhost:3002
+@host=https://api.ileady.whalelaunch.com
+
+
+###
+GET {{host}}/health
+
+
+###
+GET {{host}}/secrets/apikeys.txt

@@ -1,0 +1,16 @@
+@host=http://localhost:3002
+
+@userId=21a4725e-883e-4a4b-a4e3-defe2d4be447
+@jwtToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzI3NTI2NDcxLCJleHAiOjE3MzAxMTg0NzF9.VF_62jlP5DDbFfysxyCF8j4MUYoiTtYFQ2sVv2N8wFI
+
+### Set social
+PATCH {{host}}/v1/users/social
+Authorization: Bearer {{jwtToken}}
+Content-Type: application/json
+
+{
+  "type": "telegram",
+  "data": {
+    "username": "@some"
+  }
+}

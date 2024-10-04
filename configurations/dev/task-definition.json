@@ -1,0 +1,83 @@
+{
+    "family": "api-gateway-dev-td",
+    "containerDefinitions": [
+        {
+            "name": "api-gateway-dev-container",
+            "image": "___IMAGE_NAME___",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 3001,
+                    "protocol": "tcp",
+                    "containerPort": 3001
+                }
+            ],
+            "memory": 256,
+            "cpu": 128,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "api-gateway-dev",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-create-group": "true",
+                    "awslogs-stream-prefix": "prod"
+                }
+            },
+            "environment": [
+                {
+                    "name": "PORT",
+                    "value": "3001"
+                },
+                {
+                    "name": "SQS_CUSTOMER_BOT_QUEUE_URL",
+                    "value": "___SQS_CUSTOMER_BOT_QUEUE_URL___"
+                },
+                {
+                    "name": "NEW_RELIC_APP_NAME",
+                    "value": "api-gateway-dev"
+                },
+                {
+                    "name": "NEW_RELIC_LABELS",
+                    "value": "environment:prod"
+                }
+            ],
+            "secrets": [
+                {
+                    "valueFrom": "___ARN_NEW_RELIC_LICENSE_KEY___",
+                    "name": "NEW_RELIC_LICENSE_KEY"
+                },
+                {
+                    "valueFrom": "___ARN_POSTGRES_HOST___",
+                    "name": "POSTGRES_HOST"
+                },
+                {
+                    "valueFrom": "___ARN_POSTGRES_PORT___",
+                    "name": "POSTGRES_PORT"
+                },
+                {
+                    "valueFrom": "___ARN_POSTGRES_USERNAME___",
+                    "name": "POSTGRES_USERNAME"
+                },
+                {
+                    "valueFrom": "___ARN_POSTGRES_PASSWORD___",
+                    "name": "POSTGRES_PASSWORD"
+                },
+                {
+                    "valueFrom": "___ARN_POSTGRES_DATABASE___",
+                    "name": "POSTGRES_DATABASE"
+                }
+            ],
+            "entryPoint": [
+                "node",
+                "-r",
+                "newrelic",
+                "dist/main.js"
+            ],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "executionRoleArn": "EcsTaskExecutionRole",
+    "volumes": [],
+    "placementConstraints": []
+}

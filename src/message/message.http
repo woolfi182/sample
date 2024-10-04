@@ -1,0 +1,28 @@
+@host=http://localhost:3002
+
+# Create message
+POST {{host}}/v1/messages
+Content-Type: application/json
+
+{
+  "type": "telegram",
+  "message": "Hello World",
+  "metadata": {
+    "messageId": "2123123",
+    "groupId": "123123asdf",
+    "sender": {
+      "senderId": "123123123",
+      "username": "username",
+      "firstName": null,
+      "lastName": null,
+      "langCode": "en",
+      "photo": "",
+      "isBot": false,
+      "isDeleted": false,
+      "isPremium": false,
+      "isBotBusiness": false,
+      "isRestricted": false,
+      "isScam": false
+    }
+  }
+}
